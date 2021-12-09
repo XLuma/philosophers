@@ -5,14 +5,22 @@
 # include <pthread.h>
 # include <sys/types.h>
 
+#define MAX_THREAD 6
+
+#ifdef __linux
+# define MAX_THREAD 16
+#endif
+
 typedef int flag;
 
-typedef struct 		s_timevalue
+typedef struct 		s_args
 {
 	double time_to_eat;
 	double time_to_die;
 	double time_to_sleep;
-} 					t_timevalue;
+	int	nb_eaten; //5th optional arg
+	int	nb_philo;
+} 					t_args;
 
 typedef struct 		s_philo
 {
@@ -22,7 +30,7 @@ typedef struct 		s_philo
 	flag is_sleeping; //0 if not sleeping, 1 if sleeping
 	flag taken_fork; //this should represent a philo number, otherwise -1
 	double timer; //timer ??
-	t_timevalue time;
+	t_args args; //struct for program arguments
 } 					t_philo;
 
 #endif
