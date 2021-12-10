@@ -3,6 +3,8 @@
 #include <pthread.h>
 #include <unistd.h>
 
+pthread_mutex_t mutex;
+
 void* routine()
 {
     printf("test\n");
@@ -31,14 +33,26 @@ void*    yourturn(void *arg)
 
 int main(int argc, char **argv)
 {
-    pthread_t t1;
+    pthread_t t[10];
     pthread_t t2;
 
     int i = 5;
-    pthread_create(&t1, NULL, &myturn, &i);
+	#if 0
+    pthread_create(&t[0], NULL, &myturn, &i);
     pthread_create(&t2, NULL, &yourturn, &i);
-    pthread_join(t1, NULL);
+    pthread_join(t[0], NULL);
     pthread_join(t2, NULL);
+	#endif
+
+	int j = 0;
+
+	pthread_mutex_init(&mutex, NULL);
+	while (j < 3)
+	{
+		pthread_create(&t2, NULL, &myturn, &i);
+		pthread_join(t2, NULL);
+		j++;
+	}
     printf("done, %d\n", i);
     return 0;
 }
