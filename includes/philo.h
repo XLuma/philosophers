@@ -22,6 +22,14 @@ typedef struct 		s_args
 	int	nb_philo;
 } 					t_args;
 
+typedef struct		s_mutex
+{
+	pthread_mutex_t	print; //lock for printing
+	pthread_mutex_t dead; //lock for death
+	pthread_mutex_t eat; //lock for eating ???
+	pthread_mutex_t queue; //lock for queue ?
+}					t_mutex;
+
 typedef struct 		s_philo
 {
 	flag fork; //0 if not taken, 1 if taken
