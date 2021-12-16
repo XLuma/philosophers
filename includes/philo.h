@@ -4,9 +4,10 @@
 # include "../libft/libft.h"
 # include <pthread.h>
 # include <sys/types.h>
+# include <limits.h>
 
 #define MAX_THREAD 6
-
+#define string char*
 #ifdef __linux
 # define MAX_THREAD 16
 #endif
