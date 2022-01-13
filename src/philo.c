@@ -6,7 +6,7 @@
 /*   By: llaplant <llaplant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/30 10:41:57 by llaplant          #+#    #+#             */
-/*   Updated: 2021/11/30 16:21:16 by llaplant         ###   ########.fr       */
+/*   Updated: 2022/01/13 12:06:06 by llaplant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 void	check_argv(int argc, char **argv, t_main *main)
 {
-	printf("hi\n");
 	if ((argc < 5 || argc > 6) || ft_atoi(argv[1]) < 2)
 		error("Error\n");
 	if (argc == 6)
@@ -25,7 +24,6 @@ void	check_argv(int argc, char **argv, t_main *main)
 	main->args.time_die = ft_atoi(argv[2]);
 	main->args.time_to_eat = ft_atoi(argv[3]);
 	main->args.time_to_sleep = ft_atoi(argv[4]);
-	printf("parsed normal arguments\n");
 }
 
 t_philo	new_philo(int id)
@@ -44,7 +42,6 @@ t_philo	new_philo(int id)
 void	init_mutex(t_main *main)
 {
 	init_mutex_forks(main);
-	printf("All fork mutexes have been assigned and initiated\n");
 	pthread_mutex_init(&main->mutex.dead, NULL);
 	pthread_mutex_init(&main->mutex.eat, NULL);
 	pthread_mutex_init(&main->mutex.print, NULL);
@@ -65,7 +62,6 @@ int	main(int argc, char **argv)
 		i++;
 	}
 	init_mutex(&main);
-	printf("Assigned ID's to philo and init\n");
 	start(&main);
 	return (0);
 }

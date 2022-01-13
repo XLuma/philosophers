@@ -6,7 +6,7 @@
 /*   By: llaplant <llaplant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/13 11:45:24 by llaplant          #+#    #+#             */
-/*   Updated: 2022/01/13 11:46:59 by llaplant         ###   ########.fr       */
+/*   Updated: 2022/01/13 12:07:19 by llaplant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,11 @@ int	ft_atoi(char *str)
 		str++;
 	}
 	return (sum * nop);
+}
+
+void	ft_putchar_fd(char c, int fd)
+{
+	write(fd, &c, 1);
 }
 
 void	ft_putstr_fd(char *s, int fd)

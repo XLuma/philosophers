@@ -99,4 +99,5 @@ void		exit_proc(t_main *main);
 //externs
 int			ft_atoi(char *str);
 void		ft_putstr_fd(char *s, int fd);
+void		ft_putchar_fd(char c, int fd);
 #endif

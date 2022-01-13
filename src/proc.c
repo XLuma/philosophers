@@ -6,7 +6,7 @@
 /*   By: llaplant <llaplant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/13 11:34:24 by llaplant          #+#    #+#             */
-/*   Updated: 2022/01/13 11:34:26 by llaplant         ###   ########.fr       */
+/*   Updated: 2022/01/13 12:07:26 by llaplant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,5 +65,5 @@ void	start(t_main *main)
 	}
 	deathcheck(main->philo, main);
 	exit_proc(main);
-	printf("End\n");
+	printf("End");
 }

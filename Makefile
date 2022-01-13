@@ -4,12 +4,20 @@ OBJS = $(SRCS:.c=.o)
 CC = gcc
 RM = rm -f
 CFLAGS = -Wall -Werror -Wextra
-LIBFT = libft/libft.a
 
-all:
-	$(CC) $(CFLAGS) -pthread $(SRCS) $(LIBFT) -o $(NAME) -g
+all: $(NAME)
+
+.c.o:
+#		$(CC) $(CFLAGS) -c -I $(HEADER) $< -o ${<:.c=.o}
+		$(CC) $(CFLAGS) -c $< -o ${<:.c=.o}
+
+$(NAME): $(OBJS)
+	$(CC) $(CFLAGS) -pthread $(OBJS) -o $(NAME)
 
 clean:
-	rm -f $(NAME)
+	$(RM) $(OBJS)
 
-re: clean all
+fclean: clean
+	$(RM) $(NAME)
+
+re: fclean all
