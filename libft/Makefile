@@ -22,7 +22,8 @@ CFLAGS = -Wall -Werror -Wextra
 all: $(NAME)
 
 .c.o:
-		$(CC) $(CFLAGS) -c -I $(HEADER) $< -o ${<:.c=.o}
+#		$(CC) $(CFLAGS) -c -I $(HEADER) $< -o ${<:.c=.o}
+		$(CC) $(CFLAGS) -c -Ilibft $< -o ${<:.c=.o}
 
 $(NAME): $(OBJS)
 	ar rcs $(NAME) $(OBJS)

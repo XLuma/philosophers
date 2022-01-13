@@ -12,37 +12,60 @@
 
 #include "../includes/philo.h"
 
-t_philo init_philo(void)
+void	check_argv(int argc, char **argv, t_main *main)
 {
-	t_philo philo;
-
-	philo.fork = 0;
-	philo.is_dead = 0;
-	philo.is_eating = 0;
-	philo.is_sleeping = 0;
-	philo.taken_fork = -1;
-	philo.args.time_to_die = -1;
-	philo.args.time_to_eat = -1;
-	philo.args.time_to_sleep = -1;
-	philo.args.nb_philo = 0;
-	philo.args.nb_eaten = 0;
-	return (philo);
-}
-
-void	check_argv(int argc, char **argv, t_philo *philo)
-{
-	if(ft_atoi(argv[1]) < 2 || argc != 5 || argc != 6)
-		printf("Error\n");
+	printf("hi\n");
+	if ((argc < 5 || argc > 6) || ft_atoi(argv[1]) < 2)
+		error("Error\n");
 	if (argc == 6)
-		philo->args.nb_eaten = ft_atoi(argv[5]);
+		main->args.nb_eaten = ft_atoi(argv[5]);
+	else
+		main->args.nb_eaten = -1;
+	main->args.nb_philo = ft_atoi(argv[1]);
+	main->args.time_die = ft_atoi(argv[2]);
+	main->args.time_to_eat = ft_atoi(argv[3]);
+	main->args.time_to_sleep = ft_atoi(argv[4]);
+	printf("parsed normal arguments\n");
 }
 
-int main(int argc, char **argv)
+t_philo	new_philo(int id)
 {
-	t_philo philo;
-	
-	philo = init_philo();
-	check_argv(argc, argv, &philo);
-	//need to think about how to handle number of philos in a good way, seems an allocated array isnt good
-	return 0;
+	t_philo	ret;
+
+	ret.id = id;
+	ret.is_dead = 0;
+	ret.time_eaten = 0;
+	ret.is_sleeping = 0;
+	ret.taken_fork = -1;
+	ret.timer = 0;
+	return (ret);
+}
+
+void	init_mutex(t_main *main)
+{
+	init_mutex_forks(main);
+	printf("All fork mutexes have been assigned and initiated\n");
+	pthread_mutex_init(&main->mutex.dead, NULL);
+	pthread_mutex_init(&main->mutex.eat, NULL);
+	pthread_mutex_init(&main->mutex.print, NULL);
+	pthread_mutex_init(&main->mutex.queue, NULL);
+	pthread_mutex_init(&main->mutex.eat_check, NULL);
+}
+
+int	main(int argc, char **argv)
+{
+	t_main	main;
+	int		i;
+
+	i = 0;
+	check_argv(argc, argv, &main);
+	while (i < main.args.nb_philo)
+	{
+		main.philo[i] = new_philo(i);
+		i++;
+	}
+	init_mutex(&main);
+	printf("Assigned ID's to philo and init\n");
+	start(&main);
+	return (0);
 }
