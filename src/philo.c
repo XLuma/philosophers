@@ -6,7 +6,7 @@
 /*   By: llaplant <llaplant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/30 10:41:57 by llaplant          #+#    #+#             */
-/*   Updated: 2022/01/13 12:06:06 by llaplant         ###   ########.fr       */
+/*   Updated: 2022/01/17 14:42:56 by llaplant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	check_argv(int argc, char **argv, t_main *main)
 {
-	if ((argc < 5 || argc > 6) || ft_atoi(argv[1]) < 2)
+	if ((argc < 5 || argc > 6) || ft_atoi(argv[1]) < 1)
 		error("Error\n");
 	if (argc == 6)
 		main->args.nb_eaten = ft_atoi(argv[5]);

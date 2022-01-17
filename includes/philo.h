@@ -1,11 +1,13 @@
 #ifndef PHILO_H
 # define PHILO_H
 
-# include "../libft/libft.h"
 # include <pthread.h>
 # include <sys/types.h>
 # include <limits.h>
 # include <sys/time.h>
+# include <stdio.h>
+# include <stdlib.h>
+# include <unistd.h>
 
 # define MAX_THREAD 12
 

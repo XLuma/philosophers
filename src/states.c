@@ -6,7 +6,7 @@
 /*   By: llaplant <llaplant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/13 11:34:33 by llaplant          #+#    #+#             */
-/*   Updated: 2022/01/13 11:34:35 by llaplant         ###   ########.fr       */
+/*   Updated: 2022/01/17 16:40:12 by llaplant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,9 +88,17 @@ void	exit_proc(t_main *main)
 	i = 0;
 	while (i < main->args.nb_philo)
 	{
-		if (pthread_join(main->threads[i], NULL) != 0)
-			error("There was an error joining threads\n");
-		i++;
+		if (main->args.nb_philo == 1)
+		{
+			kill_philo(main, i);
+			exit(1);
+		}
+		else
+		{
+			if (pthread_join(main->threads[i], NULL) != 0)
+				error("There was an error joining threads\n");
+			i++;
+		}
 	}
 	i = 0;
 	while (i < main->args.nb_philo)
